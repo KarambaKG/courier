@@ -13,3 +13,17 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.menu-card {
+  border-radius: 4px 4px 4px 4px;
+  border-right: medium none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  float: left;
+  margin-right: 30px;
+  min-height: 200px;
+  margin-bottom: 21px;
+  position: relative;
+  width: 302px;
+  border: 2px dashed #c6b198 ;
+  background: #fff9eb ;
+}

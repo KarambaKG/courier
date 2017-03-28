@@ -1,22 +1,30 @@
-<h1>Hello</h1>
-<div>
-      <table style="width:50%">
-        <tr>
-          <th>Название заказа</th>
-          <th>Статус заказа</th>
-          <th>На ком сейчас заказ</th>
-        </tr>
-        <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.title %></td>
-          <td> <%= order.delivered %></td>
-          <% if order.user.admin? %>
-              <td> <%= 'Курьер не назначен' %> <%= link_to 'Назначить курьера', edit_orders_path(order) %></td>
+<% if current_user.admin %>
+    <h1>Админ страница</h1>
+    <% @users.each do |user| %>
+        <div class="col-md-6 menu-card">
+          <table style="width:50%" class="table table-bordered">
+            <tr>
+              <th>Заказ</th>
+              <th>Статус</th>
+            </tr>
+        <%= user.name %> <br>
+        <% @orders.where(user_id: user.id).each do |order| %>
+            <tr>
+              <td><%= order.title %></td>
+              <td><%= order.delivered %></td>
+            </tr>
+            <% end %> <br>
+          </table>
+        <%= link_to "Добавить заказ", root_path %> <br>
+        </div>
 
-          <% else %>
-              <td> <%= order.user.name %><%= link_to 'Назначить курьера', edit_orders_path(order) %></td>
-        <%end %>
-        </tr>
         <% end %>
-      </table>
-</div>
+    <% else %>
+    <h1>Страница курьера</h1>
+    <% @orders.where(user_id: current_user.id).each do |order| %>
+        <%= order.title %>
+        <%= order.delivered %>
+        <%= link_to "Кликни если доставлено", root_path %> <br>
+
+    <% end %>
+    <% end %>
