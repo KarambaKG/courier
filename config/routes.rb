@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'main#index'
+  root 'order#index'
 
   devise_for :users
 
