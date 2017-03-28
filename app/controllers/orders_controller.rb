@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @orders = Order.all
   end
 
   def new
-    @order = Order.new
+    @order = Order.new(orders_params)
   end
 
   def create
@@ -23,18 +24,18 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order = Order.find(params[:format])
+    @order = Order.find(params[:id])
     @order.destroy
   end
 
   def show
-    @order = Order.find(params[:format])
+    @order = Order.find(params[:id])
   end
 
   private
 
   def orders_params
-    params.require(:order).permit(:title, :delivered, :user_id, :format)
+    params.require(:order).permit(:title, :delivered, :user_id,:format,:id)
   end
 
 end
