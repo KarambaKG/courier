@@ -1,6 +1,7 @@
 <% if current_user.admin %>
     <h1>Админ страница</h1>
     <% @users.each do |user| %>
+        <div class="container"><div class="row">
         <div class="col-md-6 menu-card">
           <table style="width:50%" class="table table-bordered">
             <tr>
@@ -15,9 +16,10 @@
             </tr>
             <% end %> <br>
           </table>
-        <%= link_to "Добавить заказ", root_path %> <br>
+        <%= link_to "Добавить заказ", assign_path(user) %> <br>
         </div>
-
+        </div>
+        </div>
         <% end %>
     <% else %>
     <h1>Страница курьера</h1>

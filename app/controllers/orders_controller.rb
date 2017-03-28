@@ -10,13 +10,17 @@ before_action :authenticate_user!
     @order = Order.new(orders_params)
   end
 
-  def create
-    @order = Order.new(orders_params)
-    @order.save
+  def add_order
+    @order = Order.find(params[:title])
+    @order.update()
   end
 
-  def edit
-    @order = Order.find(params[:format])
+  def assign_order_to_user
+    @user = User.find(params[:id])
+  end
+
+  def save_order_to_user
+    @user.update
   end
 
   def update
