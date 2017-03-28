@@ -1,9 +1,9 @@
 <h1>Назначение курьера</h1>
-<%= form_for @order do |f| %>
+<%= form_for @order, url: orders_path(@order) do |f| %>
 
     <div>
       <%= f.label :order_user_id %> <br>
-      <%= f.collection_select :order_user_id, User.all, :id, :name %>
+      <%= f.collection_select :user_id, User.all, :id, :name %>
     </div>
 
     <div><%= f.submit %></div>

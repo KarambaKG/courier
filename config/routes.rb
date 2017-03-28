@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'order#index'
+  root 'orders#index'
 
   devise_for :users
 
-  resource :order
+  resource :orders
 end
