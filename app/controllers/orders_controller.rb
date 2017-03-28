@@ -16,6 +16,7 @@ before_action :authenticate_user!
   end
 
   def assign_order_to_user
+    @orders = Order.all
     @user = User.find(params[:id])
   end
 
@@ -24,8 +25,8 @@ before_action :authenticate_user!
   end
 
   def update
-    @order = Order.find(params[:format])
-    @order.update(orders_params)
+    @order = Order.find_by(:title=>params['user']['order']['title'])
+    @order.update_attribute(:user_id,params['user']['user_id'])
   end
 
   def destroy

@@ -1,11 +1,18 @@
 <br>
-<%= form_for @order, url: orders_path(@order) do |f| %>
+<%= form_for @user, url: orders_path(@order) do |f| %>
 
     <div>
       <%= f.label :user_id %>
       <%= f.text_field :user_id, value:  @user.id %>
     </div>
 
-<%= f.submit %>
+    <div>
+      <%= f.fields_for :order do |order| %>
+      <%= order.label :title%>
+      <%= order.text_field :title %>
+      <% end %>
+    </div>
+
+<%= f.submit "asfd" %>
 
 <% end %>
