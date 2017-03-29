@@ -28,8 +28,9 @@ before_action :authenticate_user!
   end
 
   def destroy
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:format])
     @order.destroy
+    redirect_to root_path
   end
 
   def show

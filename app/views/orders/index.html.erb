@@ -7,12 +7,14 @@
             <tr>
               <th>Заказ</th>
               <th>Статус</th>
+              <th>Удаление</th>
             </tr>
         <%= user.name %> <br>
         <% @orders.where(user_id: user.id).each do |order| %>
             <tr>
               <td><%= order.title %></td>
               <td><%= order.delivered %></td>
+              <td><%= link_to "Delete", orders_path(order), :confirm => "Are you sure?", :method => :delete %></td>
             </tr>
             <% end %> <br>
           </table>
