@@ -26,7 +26,8 @@
     <% @orders.where(user_id: current_user.id).each do |order| %>
         <%= order.title %>
         <%= order.delivered %>
-        <%= link_to "Кликни если доставлено", root_path %> <br>
-
+        <% unless order.delivered? %>
+        <%= link_to "Кликни если доставлено", delivered_path(order) %> 
+        <% end %> <br>
     <% end %>
     <% end %>
